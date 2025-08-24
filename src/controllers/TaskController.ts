@@ -16,7 +16,7 @@ interface updateTaskParams {
 interface updateTaskBody {
   title: ITask["title"];
   description: ITask["description"];
-  completed: ITask["completed"];
+  status: ITask["status"];
 }
 
 interface deleteTaskParams {
@@ -89,7 +89,7 @@ export class TaskController {
     res: Response
   ) => {
     const { taskId } = req.params;
-    const { title, description, completed } = req.body;
+    const { title, description, status } = req.body;
     let task: ITask | null = null;
 
     //* traer la tarea
@@ -110,7 +110,7 @@ export class TaskController {
     //* actualizar la información de la tarea
     task.description = description || task.description;
     task.title = title || task.title;
-    task.completed = completed || task.completed;
+    task.status = status || task.status;
 
     try {
       await task.save();
