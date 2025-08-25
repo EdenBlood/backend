@@ -56,7 +56,7 @@ export class TaskController {
       res.status(500).json({ error: errorJson.message });
       return;
     }
-
+    console.log(tasks);
     res.status(200).json({ msg: "Tareas encontradas", tasks: tasks });
   };
 
