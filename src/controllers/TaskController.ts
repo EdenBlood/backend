@@ -4,6 +4,7 @@ import Task, { ITask } from "../models/Task";
 interface createTaskBody {
   title: ITask["title"];
   description: ITask["description"];
+  status: ITask["status"];
 }
 
 interface getTaskByIdParams {
@@ -28,11 +29,12 @@ export class TaskController {
     req: Request<{}, {}, createTaskBody, {}>,
     res: Response
   ) => {
-    const { title, description } = req.body;
+    const { title, description, status } = req.body;
 
     const task: ITask = new Task({
       title,
       description,
+      status,
     });
 
     try {
